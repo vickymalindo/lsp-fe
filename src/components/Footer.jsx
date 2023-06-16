@@ -1,8 +1,16 @@
 // import React from 'react'
 import { BsFacebook, BsInstagram, BsWhatsapp } from 'react-icons/bs';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 const Footer = () => {
+  const data = localStorage.getItem('data');
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.clear();
+    navigate('/');
+  };
+
   return (
     <footer className='bg-slate-600 text-white'>
       <div className='px-14 py-7'>
@@ -16,14 +24,32 @@ const Footer = () => {
               <BsFacebook className='inline-block' />
             </div>
           </div>
-          <div className='text-lg'>
-            <p>
-              <Link to='/'>Beranda</Link>
-            </p>
-            <p>
-              <Link to='/login'>Login</Link>
-            </p>
-          </div>
+          {data ? (
+            <div className='flex flex-col'>
+              <p>
+                <Link to='/createmading'>Buat Mading</Link>
+              </p>
+              <p>
+                <Link to='/report'>Laporan</Link>
+              </p>
+              <p>
+                <button
+                  className='bg-transparent outline-none border-none'
+                  onClick={handleLogout}>
+                  Logout
+                </button>
+              </p>
+            </div>
+          ) : (
+            <div className='text-lg'>
+              <p>
+                <Link to='/'>Beranda</Link>
+              </p>
+              <p>
+                <Link to='/login'>Login</Link>
+              </p>
+            </div>
+          )}
         </div>
         <p className='text-center text-sm'>
           &copy; Copyright JEWEPE Mading, 2023

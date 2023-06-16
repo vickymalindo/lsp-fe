@@ -22,6 +22,9 @@ const Navbar = () => {
                   <Link to='/createmading'>Buat Mading</Link>
                 </li>
                 <li className='text-lg font-semibold'>
+                  <Link to='/report'>Laporan</Link>
+                </li>
+                <li className='text-lg font-semibold'>
                   <button
                     className='bg-transparent outline-none border-none'
                     onClick={handleLogout}>
